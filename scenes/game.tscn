@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://db0h0i0wgqhss"]
+
+[ext_resource type="PackedScene" uid="uid://l6o7ktnb11fx" path="res://player.tscn" id="1_rqjan"]
+[ext_resource type="Script" path="res://player.gd" id="2_3ujjk"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_rqjan")]
+position = Vector2(175, 65)
+script = ExtResource("2_3ujjk")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(175, 65)
+zoom = Vector2(4, 4)
