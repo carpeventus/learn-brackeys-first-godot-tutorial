@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo5s53o0sote0"]
+
+[ext_resource type="Script" path="res://dead_area.gd" id="1_752g5"]
+
+[node name="DeadArea" type="Area2D"]
+script = ExtResource("1_752g5")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
