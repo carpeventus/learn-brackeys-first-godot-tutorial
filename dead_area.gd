@@ -9,9 +9,12 @@ func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 
 func _on_timer_timeout() -> void:
+	Engine.time_scale = 1.0 
 	get_tree().reload_current_scene()
+	
 
 
 func _on_body_entered(_body: Node2D) -> void:
 	print("You are dead!")
+	Engine.time_scale = 0.4
 	timer.start()

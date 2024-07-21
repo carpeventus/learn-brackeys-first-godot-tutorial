@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://db0h0i0wgqhss"]
+[gd_scene load_steps=15 format=4 uid="uid://db0h0i0wgqhss"]
 
 [ext_resource type="PackedScene" uid="uid://l6o7ktnb11fx" path="res://player.tscn" id="1_rqjan"]
 [ext_resource type="PackedScene" uid="uid://djy5tfbasihdt" path="res://platform.tscn" id="3_esjcb"]
 [ext_resource type="Texture2D" uid="uid://ba62vk2iyecbm" path="res://assets/sprites/world_tileset.png" id="3_iyqnp"]
 [ext_resource type="PackedScene" uid="uid://de8ttkf635w2o" path="res://coin.tscn" id="4_md7f0"]
 [ext_resource type="PackedScene" uid="uid://bo5s53o0sote0" path="res://dead_area.tscn" id="5_iph1o"]
+[ext_resource type="PackedScene" uid="uid://vv8qlnn4v4xb" path="res://enemy/slime.tscn" id="6_0urq0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rnjvy"]
 texture = ExtResource("3_iyqnp")
@@ -303,6 +304,21 @@ texture = ExtResource("3_iyqnp")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_f44ab")
 
+[sub_resource type="Animation" id="Animation_c5xcv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(150, 43)]
+}
+
 [sub_resource type="Animation" id="Animation_01px4"]
 resource_name = "move"
 length = 1.5
@@ -318,21 +334,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(150, 43), Vector2(250, 43)]
-}
-
-[sub_resource type="Animation" id="Animation_c5xcv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(150, 43)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_21l8m"]
@@ -367,7 +368,7 @@ tile_map_data = PackedByteArray("AAAAAAwAAAAAAA0AAAAAAA0AAAAAAA4AAAAAAA4AAAAAAA8
 tile_set = SubResource("TileSet_yecu8")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="TileMap"]
-tile_map_data = PackedByteArray("AAAMAAAAAQAEAAAAAAAPAP7/AQAEAAIAAAAJAAcAAQAAAAAAAAAJAAgAAQAAAAEAAAAJAAkAAQAAAAEAAAAKAAcAAQAAAAAAAAAKAAgAAQAAAAEAAAAKAAkAAQAAAAEAAAAPAAcAAQACAAEAAAAQAAcAAQACAAEAAAADAAoAAQAAAAAAAAADAAsAAQAAAAEAAAAEAAoAAQAAAAAAAAAEAAsAAQAAAAEAAAAFAAoAAQAAAAAAAAAFAAsAAQAAAAEAAAAGAAoAAQAAAAAAAAAGAAsAAQAAAAEAAAAHAAoAAQAAAAAAAAAHAAsAAQAAAAEAAAAIAAoAAQAAAAAAAAAIAAsAAQAAAAEAAAAJAAoAAQAAAAEAAAAJAAsAAQAAAAEAAAAKAAoAAQAAAAEAAAAKAAsAAQAAAAEAAAAPAAgAAQACAAEAAAAPAAkAAQACAAEAAAAQAAgAAQACAAEAAAAQAAkAAQACAAEAAAATAAcAAQACAAEAAAATAAgAAQACAAEAAAATAAkAAQACAAEAAAAUAAcAAQACAAEAAAAUAAgAAQACAAEAAAAUAAkAAQACAAEAAAAMAAcAAQAJAAEAAAANAAcAAQAKAAEAAAAOAAcAAQALAAEAAAALAAcAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAMAAAAAQAEAAAAAAAPAP7/AQAEAAIAAAAJAAcAAQAAAAAAAAAJAAgAAQAAAAEAAAAJAAkAAQAAAAEAAAAKAAcAAQAAAAAAAAAKAAgAAQAAAAEAAAAKAAkAAQAAAAEAAAAPAAcAAQACAAEAAAAQAAcAAQACAAEAAAADAAoAAQAAAAAAAAADAAsAAQAAAAEAAAAEAAoAAQAAAAAAAAAEAAsAAQAAAAEAAAAFAAoAAQAAAAAAAAAFAAsAAQAAAAEAAAAGAAoAAQAAAAAAAAAGAAsAAQAAAAEAAAAHAAoAAQAAAAAAAAAHAAsAAQAAAAEAAAAIAAoAAQAAAAAAAAAIAAsAAQAAAAEAAAAJAAoAAQAAAAEAAAAJAAsAAQAAAAEAAAAKAAoAAQAAAAEAAAAKAAsAAQAAAAEAAAAPAAgAAQACAAEAAAAPAAkAAQACAAEAAAAQAAgAAQACAAEAAAAQAAkAAQACAAEAAAATAAcAAQACAAEAAAATAAgAAQACAAEAAAATAAkAAQACAAEAAAAUAAcAAQACAAEAAAAUAAgAAQACAAEAAAAUAAkAAQACAAEAAAAMAAcAAQAJAAEAAAANAAcAAQAKAAEAAAAOAAcAAQALAAEAAAALAAcAAQAAAAAAAAACAAsAAQAAAAEAAAACAAoAAQAAAAAAAAABAAcAAQAAAAAAAAABAAgAAQAAAAEAAAABAAkAAQAAAAEAAAABAAoAAQAAAAEAAAABAAsAAQAAAAEAAAA=")
 tile_set = SubResource("TileSet_01601")
 
 [node name="Platforms" type="Node2D" parent="."]
@@ -400,7 +401,11 @@ position = Vector2(85, 153)
 
 [node name="DeadArea" parent="." instance=ExtResource("5_iph1o")]
 position = Vector2(98, 198)
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
 shape = SubResource("WorldBoundaryShape2D_7fmg1")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Slime" parent="Enemies" instance=ExtResource("6_0urq0")]
+position = Vector2(83, 104)

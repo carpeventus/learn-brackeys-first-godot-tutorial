@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://dead_area.gd" id="1_752g5"]
 
 [node name="DeadArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 6
 script = ExtResource("1_752g5")
 
 [node name="Timer" type="Timer" parent="."]
