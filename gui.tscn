@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://d5hi0w5rjpvr"]
+
+[ext_resource type="FontFile" uid="uid://delf4lill6mxs" path="res://assets/fonts/PixelOperator8.ttf" id="1_ajlya"]
+[ext_resource type="Script" path="res://gui.gd" id="1_yndkt"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_yndkt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = -27.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ajlya")
+theme_override_font_sizes/font_size = 8
+text = "Score :"
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ajlya")
+theme_override_font_sizes/font_size = 8
+text = "0"

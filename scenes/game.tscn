@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://db0h0i0wgqhss"]
+[gd_scene load_steps=17 format=4 uid="uid://db0h0i0wgqhss"]
 
 [ext_resource type="PackedScene" uid="uid://l6o7ktnb11fx" path="res://player.tscn" id="1_rqjan"]
 [ext_resource type="PackedScene" uid="uid://djy5tfbasihdt" path="res://platform.tscn" id="3_esjcb"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://de8ttkf635w2o" path="res://coin.tscn" id="4_md7f0"]
 [ext_resource type="PackedScene" uid="uid://bo5s53o0sote0" path="res://dead_area.tscn" id="5_iph1o"]
 [ext_resource type="PackedScene" uid="uid://vv8qlnn4v4xb" path="res://enemy/slime.tscn" id="6_0urq0"]
+[ext_resource type="FontFile" uid="uid://delf4lill6mxs" path="res://assets/fonts/PixelOperator8.ttf" id="7_td3ff"]
+[ext_resource type="PackedScene" uid="uid://d5hi0w5rjpvr" path="res://gui.tscn" id="8_qn322"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rnjvy"]
 texture = ExtResource("3_iyqnp")
@@ -347,14 +349,14 @@ _data = {
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_rqjan")]
-position = Vector2(175, 65)
+position = Vector2(184, 104)
 collision_layer = 2
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(175, 65)
+position = Vector2(184, 104)
 limit_bottom = 200
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -409,3 +411,16 @@ shape = SubResource("WorldBoundaryShape2D_7fmg1")
 
 [node name="Slime" parent="Enemies" instance=ExtResource("6_0urq0")]
 position = Vector2(83, 104)
+
+[node name="Hints" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="Hints"]
+offset_left = 177.0
+offset_top = 44.0
+offset_right = 263.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("7_td3ff")
+theme_override_font_sizes/font_size = 8
+text = "Space to Jump"
+
+[node name="GUI" parent="." instance=ExtResource("8_qn322")]

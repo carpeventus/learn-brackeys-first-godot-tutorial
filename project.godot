@@ -15,6 +15,11 @@ run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://gloabal/game_manager.tscn"
+Music="*res://gloabal/music.tscn"
+
 [display]
 
 window/size/viewport_width=320
@@ -32,6 +37,10 @@ project/assembly_name="learn-brackeys-first-godot-tutorial"
 folder_colors={
 "res://assets/": "yellow"
 }
+
+[global_group]
+
+Player=""
 
 [input]
 

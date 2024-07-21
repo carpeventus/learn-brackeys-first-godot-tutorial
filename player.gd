@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @onready var timer: Timer = $HurtArea/Timer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var hurt_area: Area2D = $HurtArea
+signal dead_signal
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
@@ -21,10 +22,12 @@ func _on_hurt_body_entered(body : Node2D) -> void:
 	collision_shape_2d.set_deferred("disabled", true)
 	Engine.time_scale = 0.6
 	timer.start()
+	dead_signal.emit()
 	
 
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1.0
+	print(GameManager.score)
 	get_tree().reload_current_scene()
 	
 func _physics_process(delta: float) -> void:

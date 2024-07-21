@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cken3gidopul0"]
+
+[ext_resource type="Script" path="res://gloabal/game_manager.gd" id="1_5lwwm"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_5lwwm")
